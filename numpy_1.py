@@ -90,3 +90,66 @@ print(A*B)
 print(A@B) # 행렬 곱셈
 
 # int < float # float이 더 강하게 취급됨.
+
+
+# .sum
+# .min
+# .max
+# .argmax : 모든 요소 중 최댓값의 인덱스
+# .cumsum : 모든 요소의 누적합
+
+a = np.arange(8).reshape(2,4)**2
+# 8까지를 1차원으로 만들고 / 두 개의 행으로 나누고 네 개로 쪼개기 / 각각의 요소에 연산
+print(a) # 0 1 4 9 16 25 36 49
+print(a.sum())  # 140
+print(a.min())
+print(a.argmax()) # 7 = 49의 인덱스값
+print(a.cumsum()) #   0   1   5  14  30  55  91 140
+
+# 축기준 axis = 0 : 열기준 / axis = 1 : 행기준
+b = np.arange(12).reshape(3,4) # 1차원의 자료를 3*4로 만든다!
+print(b)
+print(b.sum(axis=0))
+
+# sqrt(25) = 제곱근을 찾아주는 함수
+
+# 인덱싱 슬라이싱 : 데이터를 잘라서 가져오시오!
+a = np.arange(10)**2
+print(a)
+print(a[2]) # 인덱스 번호 2번 가져오도록.
+print(a[2:5]) # 4, 9, 16
+
+a[0:6:2] = 1000
+# 0번부터 6번 미만에서 두칸씩 점프
+print(a) # [1000    1 1000    9 1000   25   36   49   64   81]
+
+a = np.arange(8)**2
+i = np.array([1,3,3,5])
+print(a[i]) # [ 1  9  9 25]
+j = np.array([[3,4], [5,6]])
+print(a[j])
+
+# 다차원이어도 1차원으로 변경    .ravel
+# 지정한 차원으로 변경  .reshape
+# 전치변환(행과 열 수를 변환)   .T
+
+a = np.arange(12).reshape(3,4)
+print(a) 
+print(a.shape) # 3열 4행
+print(a.ravel()) # 줄바꿈 안된 1차원의 결과
+print(a.reshape(2,6)) # 2열 6행
+print(a.T) # 4행 3열로 변경 - shape의 변형.
+print(a.T.shape)
+
+# np.vstack : axis = 0 (열) 방향으로 쌓기
+# np.hstack : axis = 1 (행) 방향으로 쌓기
+# np.hsplit : 숫자 1개가 들어가면 x개로 등분 / 리스트를 넣을 겨우 x 기준으로 데이터 분할
+
+a = np.arange(12).reshape(2,6)
+print(np.hsplit(a, 3))
+
+print(np.hsplit(a,(3,4)))
+
+a = np.array([1,2,3,4]).reshape(2,2)
+b = np.array([5,6,7,8]).reshape(2,2)
+print(np.vstack((a,b)))
